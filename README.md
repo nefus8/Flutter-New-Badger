@@ -31,11 +31,11 @@ import 'package:flutter_new_badger/flutter_new_badger.dart';
 
 Then you can add a badge:
 ```dart
-FlutterBadger.setBadge(1);
+FlutterNewBadger.setBadge(1);
 ```
 
 Remove a badge:
 ```dart
-FlutterBadger.removeBadge();
+FlutterNewBadger.removeBadge();
 ```
 

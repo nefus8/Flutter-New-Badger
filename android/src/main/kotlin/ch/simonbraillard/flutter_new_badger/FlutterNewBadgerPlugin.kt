@@ -1,4 +1,4 @@
-package ch.simonbraillard.flutter_badger
+package ch.simonbraillard.flutter_new_badger
 
 import android.content.Context
 import androidx.annotation.NonNull

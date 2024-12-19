@@ -34,4 +34,11 @@ class MethodChannelFlutterNewBadger extends FlutterNewBadgerPlatform {
   Future<void> removeBadge() async {
     await methodChannel.invokeMethod<void>('removeBadge');
   }
+
+  /// Retrieves the current badge count.
+  @override
+  Future<int?> getBadge() async {
+    final int? badgeCount = await methodChannel.invokeMethod<int?>('getBadge');
+    return badgeCount;
+  }
 }

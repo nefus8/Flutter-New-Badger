@@ -1,6 +1,6 @@
-# flutter_new_badger_example
+# example
 
-Demonstrates how to use the flutter_new_badger plugin.
+A new exmaple Flutter project for FlutterNewBadger plugin.
 
 ## Getting Started
 

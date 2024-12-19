@@ -29,27 +29,53 @@ class MyApp extends StatefulWidget {
 
 class _MyAppState extends State<MyApp> {
   @override
-  void initState() {
-    super.initState();
-    init();
-  }
-
-  void init() async {
-    await FlutterNewBadger.setBadge(6);
-    developer.log('Badge set', name: 'FlutterNewBadger');
-    await FlutterNewBadger.removeBadge();
-    developer.log('Badge removed', name: 'FlutterNewBadger');
-  }
-
-  @override
   Widget build(BuildContext context) {
     return MaterialApp(
       home: Scaffold(
         appBar: AppBar(
           title: const Text('Plugin example app'),
         ),
-        body: const Center(
-          child: Text('New badger plugin'),
+        body: Center(
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              const Text('New badger plugin'),
+              const SizedBox(height: 16),
+              ElevatedButton(
+                onPressed: () async {
+                  await FlutterNewBadger.setBadge(5);
+                  developer.log('Badge set', name: 'FlutterNewBadger');
+                },
+                child: const Text('Set 5 badges'),
+              ),
+              const SizedBox(height: 16),
+              ElevatedButton(
+                onPressed: () async {
+                  await FlutterNewBadger.removeBadge();
+                  developer.log('Badge removed', name: 'FlutterNewBadger');
+                },
+                child: const Text('Remove badge'),
+              ),
+              const SizedBox(height: 16),
+              ElevatedButton(
+                onPressed: () async {
+                  int? count = await FlutterNewBadger.incrementBadgeCount();
+                  developer.log('Badge count incremented: $count',
+                      name: 'FlutterNewBadger');
+                },
+                child: const Text('Increment badge count'),
+              ),
+              const SizedBox(height: 16),
+              ElevatedButton(
+                onPressed: () async {
+                  int? count = await FlutterNewBadger.decrementBadgeCount();
+                  developer.log('Badge count decremented: $count',
+                      name: 'FlutterNewBadger');
+                },
+                child: const Text('Decrement badge count'),
+              ),
+            ],
+          ),
         ),
       ),
     );

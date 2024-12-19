@@ -44,4 +44,8 @@ abstract class FlutterNewBadgerPlatform extends PlatformInterface {
   Future<void> removeBadge() {
     throw UnimplementedError('removeBadge() has not been implemented.');
   }
+
+  Future<int?> getBadge() {
+    throw UnimplementedError('getBadge() has not been implemented.');
+  }
 }

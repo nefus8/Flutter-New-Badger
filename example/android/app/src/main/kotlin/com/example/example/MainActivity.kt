@@ -1,4 +1,4 @@
-package ch.simonbraillard.flutter_new_badger_example
+package com.example.example
 
 import io.flutter.embedding.android.FlutterActivity
 

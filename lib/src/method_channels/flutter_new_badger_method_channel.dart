@@ -14,7 +14,6 @@
 
 import 'package:flutter/foundation.dart';
 import 'package:flutter/services.dart';
-import 'package:meta/meta.dart';
 
 import 'flutter_new_badger_platform_interface.dart';
 

@@ -12,9 +12,10 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
+import 'dart:developer' as developer;
+
 import 'package:flutter/material.dart';
 import 'package:flutter_new_badger/flutter_new_badger.dart';
-import 'dart:developer' as developer;
 
 void main() {
   runApp(const MyApp());

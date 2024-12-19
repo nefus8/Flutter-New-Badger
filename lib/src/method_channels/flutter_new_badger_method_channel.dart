@@ -17,25 +17,45 @@ import 'package:flutter/services.dart';
 
 import 'flutter_new_badger_platform_interface.dart';
 
-/// An implementation of [FlutterNewBadgerPlatform] that uses method channels.
+import 'package:flutter/services.dart';
+import 'package:meta/meta.dart';
+import 'flutter_new_badger_platform_interface.dart';
+
+/// An implementation of [FlutterNewBadgerPlatform] using a method channel.
+///
+/// This class communicates with the platform-specific code via a method channel.
 class MethodChannelFlutterNewBadger extends FlutterNewBadgerPlatform {
-  /// The method channel used to interact with the native platform.
+  /// The [MethodChannel] used to communicate with the native platform.
   @visibleForTesting
   final methodChannel = const MethodChannel('flutter_new_badger');
 
-  /// Set badge count
+  /// Sets the badge count on the app icon.
+  ///
+  /// This method sends the `setBadge` command to the native platform
+  /// with the provided [count].
+  ///
+  /// [count] The number to display on the badge.
+  /// Returns a [Future] that completes when the badge count is updated.
   @override
   Future<void> setBadge(int count) async {
     await methodChannel.invokeMethod<void>('setBadge', {"count": count});
   }
 
-  /// Remove badge
+  /// Removes the badge from the app icon.
+  ///
+  /// This method sends the `removeBadge` command to the native platform,
+  /// clearing any badge currently displayed.
+  /// Returns a [Future] that completes when the badge is removed.
   @override
   Future<void> removeBadge() async {
     await methodChannel.invokeMethod<void>('removeBadge');
   }
 
-  /// Retrieves the current badge count.
+  /// Retrieves the current badge count from the app icon.
+  ///
+  /// This method sends the `getBadge` command to the native platform.
+  /// Returns a [Future] that completes with the current badge count,
+  /// or `null` if no badge is set.
   @override
   Future<int?> getBadge() async {
     final int? badgeCount = await methodChannel.invokeMethod<int?>('getBadge');

@@ -39,3 +39,17 @@ Remove a badge:
 FlutterNewBadger.removeBadge();
 ```
 
+Get the current badge:
+```dart
+int? badge = await FlutterNewBadger.getBadge();
+```
+
+Increment the badge count by 1 and return the new badge count:
+```dart
+int? int = await FlutterNewBadger.incrementBadgeCount();
+```
+
+Decrement the badge count by 1 and return the new badge count:
+```dart
+int? int = await FlutterNewBadger.decrementBadgeCount();
+```

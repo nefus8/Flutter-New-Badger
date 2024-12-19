@@ -28,6 +28,8 @@ class MyApp extends StatefulWidget {
 }
 
 class _MyAppState extends State<MyApp> {
+  int? badgeCount;
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -41,9 +43,14 @@ class _MyAppState extends State<MyApp> {
             children: [
               const Text('New badger plugin'),
               const SizedBox(height: 16),
+              Text('Badge count: $badgeCount'),
+              const SizedBox(height: 16),
               ElevatedButton(
                 onPressed: () async {
                   await FlutterNewBadger.setBadge(5);
+                  setState(() {
+                    badgeCount = 5;
+                  });
                   developer.log('Badge set', name: 'FlutterNewBadger');
                 },
                 child: const Text('Set 5 badges'),
@@ -52,6 +59,9 @@ class _MyAppState extends State<MyApp> {
               ElevatedButton(
                 onPressed: () async {
                   await FlutterNewBadger.removeBadge();
+                  setState(() {
+                    badgeCount = null;
+                  });
                   developer.log('Badge removed', name: 'FlutterNewBadger');
                 },
                 child: const Text('Remove badge'),
@@ -59,8 +69,9 @@ class _MyAppState extends State<MyApp> {
               const SizedBox(height: 16),
               ElevatedButton(
                 onPressed: () async {
-                  int? count = await FlutterNewBadger.incrementBadgeCount();
-                  developer.log('Badge count incremented: $count',
+                  badgeCount = await FlutterNewBadger.incrementBadgeCount();
+                  setState(() {});
+                  developer.log('Badge count incremented: $badgeCount',
                       name: 'FlutterNewBadger');
                 },
                 child: const Text('Increment badge count'),
@@ -68,11 +79,22 @@ class _MyAppState extends State<MyApp> {
               const SizedBox(height: 16),
               ElevatedButton(
                 onPressed: () async {
-                  int? count = await FlutterNewBadger.decrementBadgeCount();
-                  developer.log('Badge count decremented: $count',
+                  badgeCount = await FlutterNewBadger.decrementBadgeCount();
+                  setState(() {});
+                  developer.log('Badge count decremented: $badgeCount',
                       name: 'FlutterNewBadger');
                 },
                 child: const Text('Decrement badge count'),
+              ),
+              const SizedBox(height: 16),
+              ElevatedButton(
+                onPressed: () async {
+                  badgeCount = await FlutterNewBadger.getBadge();
+                  setState(() {});
+                  developer.log('Badge count : $badgeCount',
+                      name: 'FlutterNewBadger');
+                },
+                child: const Text('Get badge count'),
               ),
             ],
           ),

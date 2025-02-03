@@ -1,3 +1,6 @@
+## 1.1.1
+* Open sourcing library
+
 ## 1.1.0
 
 * feat: Adding a function to get the badge number

@@ -1,8 +1,8 @@
 name: flutter_new_badger
 description: "A flutter project to handle app icon badges for iOS, macOS and android"
-version: 1.1.0
-homepage:
-repository:
+version: 1.1.1
+homepage: https://github.com/nefus8
+repository: https://github.com/nefus8/Flutter-New-Badger.git
 
 environment:
   sdk: ^3.5.1

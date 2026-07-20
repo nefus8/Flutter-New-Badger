@@ -9,9 +9,15 @@ let package = Package(
     products: [
         .library(name: "flutter-new-badger", targets: ["flutter_new_badger"])
     ],
+    dependencies: [
+        .package(name: "FlutterFramework", path: "../FlutterFramework")
+    ],
     targets: [
         .target(
             name: "flutter_new_badger",
+            dependencies: [
+                .product(name: "FlutterFramework", package: "FlutterFramework")
+            ],
             path: "Sources/flutter_new_badger",
             resources: [
                 .process("Resources/PrivacyInfo.xcprivacy")

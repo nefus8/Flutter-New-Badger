@@ -1,5 +1,11 @@
 # flutter_new_badger
 
+## Requirements
+
+* Flutter 3.44+ / Dart 3.12+ (since version 2.0.0)
+* iOS 12.0+, macOS 10.14+, Android 5.0+ (API 21)
+* On iOS and macOS, both Swift Package Manager and CocoaPods are supported
+
 ## Getting Started
 
 ### iOS
@@ -78,3 +84,19 @@ Decrement the badge count by 1 and return the new badge count:
 ```dart
 int? int = await FlutterNewBadger.decrementBadgeCount();
 ```
+
+## Platform support
+
+iOS and macOS have an official badge API, so badges always work there. Android has **no official API** for numeric badges: this plugin relies on [ShortcutBadger](https://github.com/leolin310148/ShortcutBadger), which calls private, launcher-specific APIs. Whether a badge shows therefore depends entirely on the device's launcher:
+
+| Platform / launcher | Numeric badge | Why                                                                                                                                                                               |
+| --- | --- |-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| iOS | ✅ | Official API. Requires the notification permission (requested automatically).                                                                                                     |
+| macOS | ✅ | Official API.                                                                                                                                                                     |
+| Android - Samsung (One UI) | ✅ | Launcher badge provider. Requires the manifest permissions below and **Settings → Notifications → App icon badges** enabled on the device.                                        |
+| Android - Huawei / Honor (EMUI) | ✅ | Launcher badge provider, with the manifest permissions below.                                                                                                                     |
+| Android - HTC, Sony, Apex, Solid launchers | ⚠️ | Supported by ShortcutBadger, but these launchers are largely obsolete today.                                                                                                      |
+| Android - Google Pixel / stock Android 8+ | ❌ | Stock Android has no app-settable badge count. It only shows **notification dots**, which the OS manages itself while a notification is active, `setBadge()` is silently ignored. |
+| Android - Xiaomi (MIUI / HyperOS) | ❌ | Badges are tied to actual posted notifications; an arbitrary count cannot be set by an app.                                                                                       |
+
+On unsupported launchers the plugin is a silent no-op, it won't crash, the badge just doesn't appear.
